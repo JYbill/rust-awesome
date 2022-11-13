@@ -1,1 +1,3 @@
-fn test() {}
+fn test() {
+    println("hello")
+}
