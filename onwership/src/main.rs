@@ -95,8 +95,21 @@ fn dangle() -> String {
 
 // 测试，字面量字符串，不可变引用是否copy字面量字符串的值
 fn main() {
-    let mut str1 = "hello";
-    let str2 = str1;
-    str1 = "test";
-    println!("{}, {}", str1, str2);
+    // 栈内存 ✅ let str: &str = "hello rust"中&str是字面量特殊类型
+    // let mut str1 = "hello";
+    // let str2 = str1;
+    // str1 = "aka.";
+    // println!("{}, {}", str1, str2);
+
+    // 堆内存 ❌
+    // let mut str1 = String::from("hello");
+    // let str2 = &str1;
+    // str1.push_str(" rust");
+    // println!("{}, {}", str1, str2);
+
+    // 栈内存的不可变引用 ❌ 不可变引用类型作用域不可以进行所有权操作
+    // let mut num1 = 1;
+    // let num2 = &num1;
+    // num1 = 2;
+    // println!("{}, {}", num1, num2);
 }
