@@ -61,13 +61,13 @@ fn makes_copy(some_integer: i32) {
 } */
 
 // 对基本数据进行可变引用，并修改值测试，如果可变引用去引用栈内存，发生值的修改影响到了栈的原始变量，即引用都是引用的指针，是浅拷贝 ✅
-fn main() {
+/* fn main() {
     let mut x = 5;
     let y = &mut x; // 引用操作
     *y += 3;
     println!("y {}", *y);
     println!("x {}", x);
-}
+} */
 
 // 不可变引用、可变引用无法同时使用
 /* fn main() {
@@ -92,3 +92,11 @@ fn dangle() -> String {
     s // ✅权限转移
 }
  */
+
+// 测试，字面量字符串，不可变引用是否copy字面量字符串的值
+fn main() {
+    let mut str1 = "hello";
+    let str2 = str1;
+    str1 = "test";
+    println!("{}, {}", str1, str2);
+}
