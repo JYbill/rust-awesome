@@ -31,7 +31,8 @@
     println!("{}, {}", s1, s2);
 } */
 
-fn main() {
+// 所有权执行流程
+/* fn main() {
     let s = String::from("hello");
     takes_ownership(s);
     // s指针不再有效，清理了栈内存
@@ -49,3 +50,45 @@ fn makes_copy(some_integer: i32) {
     // Copy特征值的拷贝
     println!("{}", some_integer);
 } // some_integer销毁清理占用的栈内存
+ */
+
+// 可变引用在同一作用域下只允许存在一个
+/* fn main() {
+    let mut s = String::from("hello");
+    let r1 = &mut s; // r1作用域开始
+    // let r2 = &mut s; ❌ 多个可变引用错误
+    println!("{}", r1); // r1作用域结束
+} */
+
+// 对基本数据进行可变引用，并修改值测试，如果可变引用去引用栈内存，发生值的修改影响到了栈的原始变量，即引用都是引用的指针，是浅拷贝 ✅
+fn main() {
+    let mut x = 5;
+    let y = &mut x; // 引用操作
+    *y += 3;
+    println!("y {}", *y);
+    println!("x {}", x);
+}
+
+// 不可变引用、可变引用无法同时使用
+/* fn main() {
+    let mut s = String::from("hello");
+    let r1 = &s; // 没问题
+    let r2 = &s; // 没问题
+                 // let r3 = &mut s; // ❌ 不可同时使用
+    println!("{}, {}, {}", s, r1, r2);
+    // 使用完成后即引用的作用域结束
+    let r3 = &mut s;
+    println!("r3 {}", r3); // ✅ r3 hello
+} */
+
+// 悬垂引用
+/* fn main() {
+    let _ref_string = dangle();
+}
+
+fn dangle() -> String {
+    let s = String::from("hello");
+    // &s // ❌ 悬垂指针
+    s // ✅权限转移
+}
+ */
