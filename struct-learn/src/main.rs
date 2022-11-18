@@ -102,5 +102,6 @@ fn main() {
 struct Point(i32, i32, i32);
 fn main() {
     let p = Point(1, 2, 3);
+    #[allow(unused_variables)]
     let Point(a, b, c) = p;
 }
