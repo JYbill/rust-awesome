@@ -55,7 +55,7 @@ fn main() {
 /**
  * const范型值
  */
-fn main() {
+/* fn main() {
     print([1, 2, 3]); // [1, 2, 3]
     print([1.1, 2.2]); // [1.1, 2.2, 3.3]
                        // errPrint([1, 2]) // ❌ 长度与方法不一致
@@ -69,4 +69,13 @@ fn print<T: std::fmt::Debug, const N: usize>(arr: [T; N]) {
 // ❌ 长度也是类型的一部分
 fn errPrint<T: std::fmt::Debug>(arr: [T; 3]) {
     println!("{:?}", arr);
+}
+ */
+
+/**
+ * 字符串数组指针占据内存大小：16字节
+ */
+fn main() {
+    let arr = ["hello世界"];
+    println!("{}", std::mem::size_of_val(&arr));
 }
